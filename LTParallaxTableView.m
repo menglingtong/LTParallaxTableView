@@ -33,17 +33,6 @@
     return self;
 }
 
-- (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor
-{
-    if (_titleBackgroundColor != titleBackgroundColor) {
-        
-        _titleBackgroundColor = titleBackgroundColor;
-        
-    }
-    
-    [self reloadData];
-}
-
 
 - (void) updateImageViewOffsetOfCell:(LTParallaxCell *)cell
 {
@@ -84,15 +73,15 @@
     
     cell.imageViewHeight        = _imageHeight;
     
-    if (_titleSourceArray != nil) {
-        
-        cell.titleLabel.text = [_titleSourceArray objectAtIndex:indexPath.row];
-        
-    }
-    
     if (_isHasTitle != 0) {
         
         cell.isHasTitle = _isHasTitle;
+        
+    }
+    
+    if (_titleSourceArray != nil) {
+        
+        cell.titleLabel.text = [_titleSourceArray objectAtIndex:indexPath.row];
         
     }
     

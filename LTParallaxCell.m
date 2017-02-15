@@ -40,19 +40,20 @@
         
         _isHasTitle = isHasTitle;
         
+        if (_isHasTitle) {
+            
+            _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, [UIScreen mainScreen].bounds.size.width, 40)];
+            
+            _titleLabel.text = @"这是图片上的文字";
+            
+            _titleLabel.textAlignment = 1;
+            
+            [self.contentView addSubview:_titleLabel];
+            
+        }
+        
     }
     
-    if (_isHasTitle) {
-        
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, [UIScreen mainScreen].bounds.size.width, 40)];
-        
-        _titleLabel.text = @"这是图片上的文字";
-        
-        _titleLabel.textAlignment = 1;
-        
-        [self.contentView addSubview:_titleLabel];
-        
-    }
 }
 
 - (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor
