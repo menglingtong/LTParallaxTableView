@@ -28,25 +28,54 @@
         
         [self.contentView addSubview:_mainImageView];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, [UIScreen mainScreen].bounds.size.width, 40)];
         
-        _titleLabel.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:0.50];
+    }
+    
+    return self;
+}
+
+- (void)setIsHasTitle:(BOOL)isHasTitle
+{
+    if (_isHasTitle != isHasTitle) {
+        
+        _isHasTitle = isHasTitle;
+        
+    }
+    
+    if (_isHasTitle) {
+        
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, [UIScreen mainScreen].bounds.size.width, 40)];
         
         _titleLabel.text = @"这是图片上的文字";
         
         _titleLabel.textAlignment = 1;
         
         [self.contentView addSubview:_titleLabel];
+        
     }
-    
-    return self;
 }
 
+- (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor
+{
+    if (_titleBackgroundColor != titleBackgroundColor) {
+        
+        _titleBackgroundColor = titleBackgroundColor;
+        
+    }
+    
+    _titleLabel.backgroundColor = titleBackgroundColor;
+}
+
+/**
+ *  设置图片高度
+ *
+ *  @param imageViewHeight 图片高度
+ */
 -(void)setImageViewHeight:(CGFloat)imageViewHeight
 {
     if (_imageViewHeight != imageViewHeight) {
         
-        imageViewHeight = _imageViewHeight;
+        _imageViewHeight = imageViewHeight;
         
         // 将图片高度修改为用户设置
         _mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , _imageViewHeight)];
@@ -54,14 +83,7 @@
     }
 }
 
--(void)setCellHeight:(CGFloat)cellHeight
-{
-    if (_cellHeight != cellHeight) {
-        
-        cellHeight = _cellHeight;
-        
-    }
-}
+
 
 /**
  *  返回图片大于imageView的高度

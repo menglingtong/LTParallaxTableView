@@ -20,27 +20,38 @@
         
         [self registerClass:[LTParallaxCell class] forCellReuseIdentifier:@"mycell"];
         
-        self.delegate = self;
-        
+        self.delegate   = self;
         self.dataSource = self;
         
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         // 设置默认cell高度
-        self.cellHeight = 200;
-        
-        self.imageHeight = 300;
+        self.cellHeight     = 200;
+        // 设置默认imageView高度
+        self.imageHeight    = 300;
     }
     
     return self;
 }
 
+- (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor
+{
+    if (_titleBackgroundColor != titleBackgroundColor) {
+        
+        _titleBackgroundColor = titleBackgroundColor;
+        
+    }
+    
+    [self reloadData];
+}
+
+
 - (void) updateImageViewOffsetOfCell:(LTParallaxCell *)cell
 {
+    // 获取当前cell的偏移量
     CGFloat cellY = cell.frame.origin.y - self.contentOffset.y;
-    
+    // 计算图片最大的偏移量范围
     CGFloat imgMaxHeight = [cell imageOverflowHeight];
-    
+    // 计算图片偏移量
     CGFloat offset = 0.0f - imgMaxHeight * cellY / self.frame.size.height;
     
     [cell setImageOffset:CGPointMake(0.0f, offset)];
@@ -71,7 +82,25 @@
     
     cell.clipsToBounds          = YES;
     
-    cell.imageViewHeight = _imageHeight;
+    cell.imageViewHeight        = _imageHeight;
+    
+    if (_titleSourceArray != nil) {
+        
+        cell.titleLabel.text = [_titleSourceArray objectAtIndex:indexPath.row];
+        
+    }
+    
+    if (_isHasTitle != 0) {
+        
+        cell.isHasTitle = _isHasTitle;
+        
+    }
+    
+    if (_titleBackgroundColor != nil) {
+        
+        cell.titleBackgroundColor = _titleBackgroundColor;
+        
+    }
     
     return cell;
 }
